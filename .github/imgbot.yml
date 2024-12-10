@@ -1,0 +1,5 @@
+compression:
+  png: 80     # Compression level for PNG images (0 to 100)
+
+filetypes:
+  - png
