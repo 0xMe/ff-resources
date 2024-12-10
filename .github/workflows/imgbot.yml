@@ -1,8 +1,20 @@
-compression:
-  png: 80
+name: Optimize Images
 
-filetypes:
-  - png
+on:
+  push:
+    paths:
+      - 'pngs/300x300/**'  # Only trigger on changes in the pngs/300x300 folder
+  pull_request:
+    paths:
+      - 'pngs/300x300/**'  # Trigger on PRs affecting the pngs/300x300 folder
 
-path:
-  - pngs/300x300/
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run ImgBot
+        uses: imgbot/imgbot-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
